@@ -26,16 +26,31 @@ import java.time.LocalDate;
 
 /**
  *
- * @author marx
+ * @author t.marx
  */
-public interface CounterDB extends AutoCloseable {
+public class MockCounterDB implements CounterDB {
 
-	void clear(final String download);
+	@Override
+	public void clear(String site) {
+	}
 
-	void count(final String counter, final String download, final LocalDate date, final long increment);
+	@Override
+	public void count(String counter, String site, LocalDate date, long increment) {
+	}
 
-	long getCount(final String counter, final String download, final LocalDate date);
+	@Override
+	public long getCount(String counter, String site, LocalDate date) {
+		return 0;
+	}
 
-	long getCountAllCounters4Month(final String download, final int year, final int month);
+	@Override
+	public long getCountAllCounters4Month(String site, int year, int month) {
+		return 0;
+	}
+
+	@Override
+	public void close() throws Exception {
+		throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	}
 	
 }

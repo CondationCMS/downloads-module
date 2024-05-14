@@ -1,4 +1,4 @@
-package com.github.thmarx.cms.modules.download.counter;
+package com.github.thmarx.cms.modules.download.extensions;
 
 /*-
  * #%L
@@ -22,20 +22,27 @@ package com.github.thmarx.cms.modules.download.counter;
  * #L%
  */
 
-import java.time.LocalDate;
+import com.github.thmarx.cms.api.extensions.HttpRoutesExtensionPoint;
+import com.github.thmarx.cms.api.extensions.Mapping;
+import com.github.thmarx.cms.modules.download.DownloadHandler;
+import com.github.thmarx.cms.modules.download.DownloadsModule;
+import com.github.thmarx.modules.api.annotation.Extension;
+import org.eclipse.jetty.http.pathmap.PathSpec;
 
 /**
  *
- * @author marx
+ * @author t.marx
  */
-public interface CounterDB extends AutoCloseable {
+@Extension(HttpRoutesExtensionPoint.class)
+public class DownloadRoutesExtension extends HttpRoutesExtensionPoint {
 
-	void clear(final String download);
-
-	void count(final String counter, final String download, final LocalDate date, final long increment);
-
-	long getCount(final String counter, final String download, final LocalDate date);
-
-	long getCountAllCounters4Month(final String download, final int year, final int month);
+	@Override
+	public Mapping getMapping() {
+		Mapping mapping = new Mapping();
+		
+		mapping.add(PathSpec.from("/downloads"), new DownloadHandler(DownloadsModule.DOWNLOAD_RESOLVER));
+		
+		return mapping;
+	}
 	
 }

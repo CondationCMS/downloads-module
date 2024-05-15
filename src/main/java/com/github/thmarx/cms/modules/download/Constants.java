@@ -1,4 +1,4 @@
-package com.github.thmarx.cms.modules.download.counter;
+package com.github.thmarx.cms.modules.download;
 
 /*-
  * #%L
@@ -22,23 +22,13 @@ package com.github.thmarx.cms.modules.download.counter;
  * #L%
  */
 
-import java.time.LocalDate;
-
 /**
  *
- * @author marx
+ * @author t.marx
  */
-public interface CounterDB extends AutoCloseable {
-
-	void clear(final String download);
-
-	void count(final String download, final String counter, final LocalDate date, final long increment);
-
-	long getCountAll (final String download, final String counter);
+public abstract class Constants {
 	
-	long getCountCurrentDay (final String download, final String counter);
-	
-	long getCountCurrentMonth (final String download, final String counter);
-	
-	long getCountCurrentYear (final String download, final String counter);
+	public static class Counters {
+		public static final String DOWNLOADS = "downloads";
+	}
 }

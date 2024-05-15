@@ -24,6 +24,7 @@ package com.github.thmarx.cms.modules.download.extensions;
 
 import com.github.thmarx.cms.api.extensions.TemplateModelExtendingExtentionPoint;
 import com.github.thmarx.cms.api.template.TemplateEngine;
+import com.github.thmarx.cms.modules.download.Constants;
 import com.github.thmarx.cms.modules.download.DownloadsModule;
 import com.github.thmarx.modules.api.annotation.Extension;
 import java.time.LocalDate;
@@ -47,7 +48,7 @@ public class DownloadsTemplateModelExtension extends TemplateModelExtendingExten
 		}
 		
 		public String count (String download) {
-			return String.valueOf(DownloadsModule.COUNTER_DB.getCount("downloads", download, LocalDate.now()));
+			return String.valueOf(DownloadsModule.COUNTER_DB.getCountAll(Constants.Counters.DOWNLOADS, download));
 		}
 	}
 }

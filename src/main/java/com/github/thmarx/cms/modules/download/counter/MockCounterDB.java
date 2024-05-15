@@ -35,22 +35,34 @@ public class MockCounterDB implements CounterDB {
 	}
 
 	@Override
-	public void count(String counter, String site, LocalDate date, long increment) {
+	public void count(String download, String counter, LocalDate date, long increment) {
 	}
 
-	@Override
-	public long getCount(String counter, String site, LocalDate date) {
-		return 0;
-	}
-
-	@Override
-	public long getCountAllCounters4Month(String site, int year, int month) {
-		return 0;
-	}
 
 	@Override
 	public void close() throws Exception {
-		throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+		
 	}
+
+	@Override
+	public long getCountCurrentDay(String download, String counter) {
+		return 0;
+	}
+
+	@Override
+	public long getCountCurrentMonth(String download, String counter) {
+		return 0;
+	}
+
+	@Override
+	public long getCountCurrentYear(String download, String counter) {
+		return 0;
+	}
+
+	@Override
+	public long getCountAll(String download, String counter) {
+		return 0;
+	}
+
 	
 }

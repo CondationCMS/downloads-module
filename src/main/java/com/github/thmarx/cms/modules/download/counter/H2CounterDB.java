@@ -69,6 +69,7 @@ public class H2CounterDB implements CounterDB {
 	/**
 	 * Close the entities instance and shutdown the database connection.
 	 */
+	@Override
 	public void close() {
 		defrag();
 		pool.dispose();
@@ -154,35 +155,13 @@ public class H2CounterDB implements CounterDB {
 			throw new RuntimeException(ex);
 		}
 	}
-
+	
 	@Override
-	public long getCount(final String counter, final String download, final LocalDate date) {
+	public long getCountAll(final String counter, final String download) {
 		try (Connection connection = pool.getConnection(); PreparedStatement select = connection.prepareStatement(
-				"select counter_value as counter_value from counters WHERE counter = ? AND download = ? AND counter_year = ? AND counter_month = ? AND counter_day = ?")) {
+				"select sum(counter_value) as counter_value from counters WHERE counter = ? AND download = ?")) {
 			select.setString(1, counter);
 			select.setString(2, download);
-			select.setInt(3, date.getYear());
-			select.setInt(4, date.getMonthValue());
-			select.setInt(5, date.getDayOfMonth());
-
-			ResultSet result = select.executeQuery();
-
-			if (result.next()) {
-				return result.getLong("counter_value");
-			}
-		} catch (SQLException ex) {
-			throw new RuntimeException(ex);
-		}
-		return 0;
-	}
-
-	@Override
-	public long getCountAllCounters4Month(final String download, final int year, final int month) {
-		try (Connection connection = pool.getConnection(); PreparedStatement select = connection.prepareStatement(
-				"select sum(counter_value) as counter_value from counters WHERE download = ? AND counter_year = ? AND counter_month = ?")) {
-			select.setString(1, download);
-			select.setInt(2, year);
-			select.setInt(3, month);
 
 			ResultSet result = select.executeQuery();
 
@@ -213,5 +192,65 @@ public class H2CounterDB implements CounterDB {
 			throw new RuntimeException(ex);
 		}
 		return false;
+	}
+
+	@Override
+	public long getCountCurrentDay(String download, String counter) {
+		var now = LocalDate.now();
+		try (Connection connection = pool.getConnection(); PreparedStatement select = connection.prepareStatement(
+				"select sum(counter_value) as counter_value from counters WHERE download = ? AND counter_year = ? AND counter_month = ? AND counter_day = ?")) {
+			select.setString(1, download);
+			select.setInt(2, now.getYear());
+			select.setInt(3, now.getMonthValue());
+			select.setInt(4, now.getDayOfMonth());
+
+			ResultSet result = select.executeQuery();
+
+			if (result.next()) {
+				return result.getLong("counter_value");
+			}
+		} catch (SQLException ex) {
+			throw new RuntimeException(ex);
+		}
+		return 0;
+	}
+
+	@Override
+	public long getCountCurrentMonth(String download, String counter) {
+		var now = LocalDate.now();
+		try (Connection connection = pool.getConnection(); PreparedStatement select = connection.prepareStatement(
+				"select sum(counter_value) as counter_value from counters WHERE download = ? AND counter_year = ? AND counter_month = ?")) {
+			select.setString(1, download);
+			select.setInt(2, now.getYear());
+			select.setInt(3, now.getMonthValue());
+
+			ResultSet result = select.executeQuery();
+
+			if (result.next()) {
+				return result.getLong("counter_value");
+			}
+		} catch (SQLException ex) {
+			throw new RuntimeException(ex);
+		}
+		return 0;
+	}
+
+	@Override
+	public long getCountCurrentYear(String download, String counter) {
+		var now = LocalDate.now();
+		try (Connection connection = pool.getConnection(); PreparedStatement select = connection.prepareStatement(
+				"select sum(counter_value) as counter_value from counters WHERE download = ? AND counter_year = ?")) {
+			select.setString(1, download);
+			select.setInt(2, now.getYear());
+
+			ResultSet result = select.executeQuery();
+
+			if (result.next()) {
+				return result.getLong("counter_value");
+			}
+		} catch (SQLException ex) {
+			throw new RuntimeException(ex);
+		}
+		return 0;
 	}
 }

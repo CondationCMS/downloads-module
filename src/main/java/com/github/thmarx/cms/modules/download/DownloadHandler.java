@@ -62,7 +62,7 @@ public class DownloadHandler implements HttpHandler {
 			return true;
 		}
 
-		DownloadsModule.COUNTER_DB.count("downloads", filename, LocalDate.now(), 1);
+		DownloadsModule.COUNTER_DB.count(Constants.Counters.DOWNLOADS, filename, LocalDate.now(), 1);
 		
 		try (
 				var inputStream = Files.newInputStream(downloadPath.get()); 

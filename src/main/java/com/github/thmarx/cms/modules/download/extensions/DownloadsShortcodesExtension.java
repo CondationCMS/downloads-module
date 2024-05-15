@@ -24,6 +24,7 @@ package com.github.thmarx.cms.modules.download.extensions;
 
 import com.github.thmarx.cms.api.extensions.RegisterShortCodesExtensionPoint;
 import com.github.thmarx.cms.api.model.Parameter;
+import com.github.thmarx.cms.modules.download.Constants;
 import com.github.thmarx.cms.modules.download.DownloadsModule;
 import com.github.thmarx.modules.api.annotation.Extension;
 import java.time.LocalDate;
@@ -44,10 +45,10 @@ public class DownloadsShortcodesExtension extends RegisterShortCodesExtensionPoi
 		var text = (String)param.getOrDefault("text", "Download");
 		var id = (String)param.getOrDefault("id", "");
 		var count = (String)param.getOrDefault("count", "false");
-		var countText = (String)param.getOrDefault("count_text", "${count} downloads");
+		var countText = (String)param.getOrDefault("count_text", " (${count} downloads)");
 		var counterValue = "";
 		if (Boolean.parseBoolean(count)) {
-			counterValue = countText.replace("${count}", "" + DownloadsModule.COUNTER_DB.getCount("downloads", id, LocalDate.now()));
+			counterValue = countText.replace("${count}", "" + DownloadsModule.COUNTER_DB.getCountAll(Constants.Counters.DOWNLOADS, id));
 		}
 		return DOWNLOAD_LINK
 				.replace("DOWNLOAD_ID", id)

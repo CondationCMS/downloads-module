@@ -58,7 +58,7 @@ public class H2CounterDBTest {
 		counterdb.count("test_count", "test_site", LocalDate.now(), 1);
 		counterdb.count("test_count", "test_site", LocalDate.now(), 1);
 		
-		long count = counterdb.getCount("test_count", "test_site", LocalDate.now());
+		long count = counterdb.getCountAll("test_count", "test_site");
 		
 		Assertions.assertThat(count).isEqualTo(3l);
 	}
@@ -66,7 +66,7 @@ public class H2CounterDBTest {
 	@Test
 	public void test_multi_thread() throws InterruptedException, ExecutionException {
 		
-		long oldCount = counterdb.getCount("test_multi_thread", "test_site", LocalDate.now());
+		long oldCount = counterdb.getCountAll("test_multi_thread", "test_site");
 		int [] counts = new int [] {10, 3, 5, 10};
 		
 		long increment = 0;
@@ -84,7 +84,7 @@ public class H2CounterDBTest {
 		}
 		CompletableFuture.allOf(futures).get();
 		
-		long newCount = counterdb.getCount("test_multi_thread", "test_site", LocalDate.now());
+		long newCount = counterdb.getCountAll("test_multi_thread", "test_site");
 		
 		Assertions.assertThat(newCount).isEqualTo((oldCount + increment));
 	}
@@ -99,15 +99,11 @@ public class H2CounterDBTest {
 			}
 		}
 		
-		long count1 =  counterdb.getCount("tracking", "demo_site", LocalDate.now());
-		long count2 = counterdb.getCount("api_requests", "demo_site", LocalDate.now());
+		long count1 =  counterdb.getCountAll("tracking", "demo_site");
+		long count2 = counterdb.getCountAll("api_requests", "demo_site");
 		
 		Assertions.assertThat(count1).isEqualTo(1000);
 		Assertions.assertThat(count2).isEqualTo(1000);
-		
-		long countAll = counterdb.getCountAllCounters4Month("demo_site", LocalDate.now().getYear(), LocalDate.now().getMonthValue());
-		
-		Assertions.assertThat(countAll).isEqualTo(2000);
 	}
 	
 }

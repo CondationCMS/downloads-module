@@ -27,7 +27,6 @@ import com.github.thmarx.cms.api.template.TemplateEngine;
 import com.github.thmarx.cms.modules.download.Constants;
 import com.github.thmarx.cms.modules.download.DownloadsModule;
 import com.github.thmarx.modules.api.annotation.Extension;
-import java.time.LocalDate;
 
 /**
  *

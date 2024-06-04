@@ -14,7 +14,7 @@
 		<module.name>downloads module</module.name>
 		<module.priority>NORMAL</module.priority>
 		
-		<cms.version>5.0.0</cms.version>
+		<cms.version>4.18.1</cms.version>
 		
 	</properties>
 	

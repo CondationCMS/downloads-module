@@ -21,7 +21,6 @@ package com.github.thmarx.cms.modules.download;
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
  */
-
 import com.github.thmarx.cms.api.db.DB;
 import com.github.thmarx.cms.api.utils.PathUtil;
 import java.io.IOException;
@@ -44,19 +43,15 @@ public class DownloadResolver {
 	private final DB db;
 
 	public Optional<Path> resolve(final String file) {
-		try {
-			final Path downloadsPath = db.getFileSystem().resolve("downloads");
-			var path = downloadsPath.resolve(file);
-			if (!PathUtil.isChild(downloadsPath, path)) {
-				return Optional.empty();
-			}
-			if (Files.exists(path)) {
-				return Optional.of(path);
-			}
-			
-		} catch (IOException ex) {
-			log.error("", ex);
+		final Path downloadsPath = db.getFileSystem().resolve("downloads");
+		var path = downloadsPath.resolve(file);
+		if (!PathUtil.isChild(downloadsPath, path)) {
+			return Optional.empty();
 		}
+		if (Files.exists(path)) {
+			return Optional.of(path);
+		}
+
 		return Optional.empty();
 	}
 }

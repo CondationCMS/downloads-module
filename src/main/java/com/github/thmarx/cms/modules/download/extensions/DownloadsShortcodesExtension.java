@@ -27,7 +27,6 @@ import com.github.thmarx.cms.api.model.Parameter;
 import com.github.thmarx.cms.modules.download.Constants;
 import com.github.thmarx.cms.modules.download.DownloadsModule;
 import com.github.thmarx.modules.api.annotation.Extension;
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;

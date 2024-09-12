@@ -1,10 +1,10 @@
-package com.github.thmarx.cms.modules.download;
+package com.condation.cms.modules.downloads;
 
 /*-
  * #%L
  * downloads-module
  * %%
- * Copyright (C) 2024 Marx-Software
+ * Copyright (C) 2024 CondationCMS
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
@@ -22,8 +22,9 @@ package com.github.thmarx.cms.modules.download;
  * #L%
  */
 
-import com.github.thmarx.cms.api.extensions.HttpHandler;
-import com.github.thmarx.cms.api.utils.HTTPUtil;
+
+import com.condation.cms.api.extensions.HttpHandler;
+import com.condation.cms.api.utils.HTTPUtil;
 import java.nio.file.Files;
 import java.time.LocalDate;
 import lombok.RequiredArgsConstructor;

@@ -1,10 +1,10 @@
-package com.github.thmarx.cms.modules.download.extensions;
+package com.condation.cms.modules.downloads.counter;
 
 /*-
  * #%L
  * downloads-module
  * %%
- * Copyright (C) 2024 Marx-Software
+ * Copyright (C) 2024 CondationCMS
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
@@ -22,27 +22,48 @@ package com.github.thmarx.cms.modules.download.extensions;
  * #L%
  */
 
-import com.github.thmarx.cms.api.extensions.HttpRoutesExtensionPoint;
-import com.github.thmarx.cms.api.extensions.Mapping;
-import com.github.thmarx.cms.modules.download.DownloadHandler;
-import com.github.thmarx.cms.modules.download.DownloadsModule;
-import com.github.thmarx.modules.api.annotation.Extension;
-import org.eclipse.jetty.http.pathmap.PathSpec;
+
+import java.time.LocalDate;
 
 /**
  *
  * @author t.marx
  */
-@Extension(HttpRoutesExtensionPoint.class)
-public class DownloadRoutesExtension extends HttpRoutesExtensionPoint {
+public class MockCounterDB implements CounterDB {
 
 	@Override
-	public Mapping getMapping() {
-		Mapping mapping = new Mapping();
-		
-		mapping.add(PathSpec.from("/downloads"), new DownloadHandler(DownloadsModule.DOWNLOAD_RESOLVER));
-		
-		return mapping;
+	public void clear(String site) {
 	}
+
+	@Override
+	public void count(String download, String counter, LocalDate date, long increment) {
+	}
+
+
+	@Override
+	public void close() throws Exception {
+		
+	}
+
+	@Override
+	public long getCountCurrentDay(String download, String counter) {
+		return 0;
+	}
+
+	@Override
+	public long getCountCurrentMonth(String download, String counter) {
+		return 0;
+	}
+
+	@Override
+	public long getCountCurrentYear(String download, String counter) {
+		return 0;
+	}
+
+	@Override
+	public long getCountAll(String download, String counter) {
+		return 0;
+	}
+
 	
 }

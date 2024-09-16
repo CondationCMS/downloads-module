@@ -1,10 +1,10 @@
-package com.github.thmarx.cms.modules.download.counter;
+package com.condation.cms.modules.downloads;
 
 /*-
  * #%L
  * downloads-module
  * %%
- * Copyright (C) 2024 Marx-Software
+ * Copyright (C) 2024 CondationCMS
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
@@ -22,47 +22,14 @@ package com.github.thmarx.cms.modules.download.counter;
  * #L%
  */
 
-import java.time.LocalDate;
 
 /**
  *
  * @author t.marx
  */
-public class MockCounterDB implements CounterDB {
-
-	@Override
-	public void clear(String site) {
-	}
-
-	@Override
-	public void count(String download, String counter, LocalDate date, long increment) {
-	}
-
-
-	@Override
-	public void close() throws Exception {
-		
-	}
-
-	@Override
-	public long getCountCurrentDay(String download, String counter) {
-		return 0;
-	}
-
-	@Override
-	public long getCountCurrentMonth(String download, String counter) {
-		return 0;
-	}
-
-	@Override
-	public long getCountCurrentYear(String download, String counter) {
-		return 0;
-	}
-
-	@Override
-	public long getCountAll(String download, String counter) {
-		return 0;
-	}
-
+public abstract class Constants {
 	
+	public static class Counters {
+		public static final String DOWNLOADS = "downloads";
+	}
 }

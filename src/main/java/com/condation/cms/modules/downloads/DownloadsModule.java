@@ -1,10 +1,10 @@
-package com.github.thmarx.cms.modules.download;
+package com.condation.cms.modules.downloads;
 
 /*-
  * #%L
  * downloads-module
  * %%
- * Copyright (C) 2024 Marx-Software
+ * Copyright (C) 2024 CondationCMS
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
@@ -21,16 +21,17 @@ package com.github.thmarx.cms.modules.download;
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
  */
-import com.github.thmarx.cms.api.configuration.configs.SiteConfiguration;
-import com.github.thmarx.cms.api.feature.features.ConfigurationFeature;
-import com.github.thmarx.cms.api.feature.features.DBFeature;
-import com.github.thmarx.cms.api.module.CMSModuleContext;
-import com.github.thmarx.cms.api.module.CMSRequestContext;
-import com.github.thmarx.cms.modules.download.counter.CounterDB;
-import com.github.thmarx.cms.modules.download.counter.H2CounterDB;
-import com.github.thmarx.cms.modules.download.counter.MockCounterDB;
-import com.github.thmarx.modules.api.ModuleLifeCycleExtension;
-import com.github.thmarx.modules.api.annotation.Extension;
+
+import com.condation.cms.api.configuration.configs.SiteConfiguration;
+import com.condation.cms.api.feature.features.ConfigurationFeature;
+import com.condation.cms.api.feature.features.DBFeature;
+import com.condation.cms.api.module.CMSModuleContext;
+import com.condation.cms.api.module.CMSRequestContext;
+import com.condation.cms.modules.downloads.counter.CounterDB;
+import com.condation.cms.modules.downloads.counter.H2CounterDB;
+import com.condation.cms.modules.downloads.counter.MockCounterDB;
+import com.condation.modules.api.ModuleLifeCycleExtension;
+import com.condation.modules.api.annotation.Extension;
 import lombok.extern.slf4j.Slf4j;
 
 /**

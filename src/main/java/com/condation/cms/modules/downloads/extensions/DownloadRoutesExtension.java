@@ -1,10 +1,10 @@
-package com.github.thmarx.cms.modules.download;
+package com.condation.cms.modules.downloads.extensions;
 
 /*-
  * #%L
  * downloads-module
  * %%
- * Copyright (C) 2024 Marx-Software
+ * Copyright (C) 2024 CondationCMS
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
@@ -22,13 +22,28 @@ package com.github.thmarx.cms.modules.download;
  * #L%
  */
 
+
+import com.condation.cms.api.extensions.HttpRoutesExtensionPoint;
+import com.condation.cms.api.extensions.Mapping;
+import com.condation.cms.modules.downloads.DownloadHandler;
+import com.condation.cms.modules.downloads.DownloadsModule;
+import com.condation.modules.api.annotation.Extension;
+import org.eclipse.jetty.http.pathmap.PathSpec;
+
 /**
  *
  * @author t.marx
  */
-public abstract class Constants {
-	
-	public static class Counters {
-		public static final String DOWNLOADS = "downloads";
+@Extension(HttpRoutesExtensionPoint.class)
+public class DownloadRoutesExtension extends HttpRoutesExtensionPoint {
+
+	@Override
+	public Mapping getMapping() {
+		Mapping mapping = new Mapping();
+		
+		mapping.add(PathSpec.from("/downloads"), new DownloadHandler(DownloadsModule.DOWNLOAD_RESOLVER));
+		
+		return mapping;
 	}
+	
 }

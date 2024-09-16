@@ -1,10 +1,10 @@
-package com.github.thmarx.cms.modules.download;
+package com.condation.cms.modules.downloads;
 
 /*-
  * #%L
  * downloads-module
  * %%
- * Copyright (C) 2024 Marx-Software
+ * Copyright (C) 2024 CondationCMS
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
@@ -21,14 +21,12 @@ package com.github.thmarx.cms.modules.download;
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
  */
-import com.github.thmarx.cms.api.db.DB;
-import com.github.thmarx.cms.api.utils.PathUtil;
-import java.io.IOException;
+
+import com.condation.cms.api.db.DB;
+import com.condation.cms.api.utils.PathUtil;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Optional;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 

@@ -112,4 +112,21 @@ public class DownloadResolverTest {
 		}
 	}
 
+	@Test
+	public void no_file() throws IOException {
+
+		var streamable = sut.resolve("not-existing");
+
+		Assertions.assertThat(streamable)
+				.isEmpty();
+	}
+
+	@Test
+	public void wrong_url() throws IOException {
+
+		var streamable = sut.resolve("none");
+
+		Assertions.assertThat(streamable)
+				.isEmpty();
+	}
 }

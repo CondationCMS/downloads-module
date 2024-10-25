@@ -73,7 +73,10 @@ public class DownloadResolver {
 		if (Files.exists(path)) {
 			try {
 				TomlParseResult result = Toml.parse(path);
-				return Optional.of(new URLStreamable(result));
+				final URLStreamable urlStreamable = new URLStreamable(result);
+				if (urlStreamable.exists()) {
+					return Optional.of(urlStreamable);
+				}
 			} catch (IOException ex) {
 				log.error("", ex);
 			}

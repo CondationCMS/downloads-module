@@ -24,9 +24,12 @@ package com.condation.cms.modules.downloads.model;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URLConnection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.tomlj.TomlParseResult;
@@ -41,14 +44,14 @@ public class URLStreamable implements Streamable {
 
 	private final TomlParseResult result;
 
-	private URLConnection connection;
+	private HttpURLConnection connection;
 
-	private URLConnection getConnection() throws IOException {
+	private HttpURLConnection getConnection() throws IOException {
 		if (connection == null) {
 			try {
 				URI url = new URI(result.getString("download.url"));
 
-				connection = url.toURL().openConnection();
+				connection = (HttpURLConnection) url.toURL().openConnection();
 			} catch (URISyntaxException ex) {
 				throw new IOException(ex);
 			}
@@ -66,6 +69,15 @@ public class URLStreamable implements Streamable {
 		return result.getString("download.filename");
 	}
 
+	public boolean exists () {
+		try {
+			return getConnection().getResponseCode() == 200;
+		} catch (IOException ex) {
+			log.error("", ex);
+		}
+		return false;
+	}
+	
 	@Override
 	public long getSize() {
 		try {
@@ -73,7 +85,7 @@ public class URLStreamable implements Streamable {
 		} catch (IOException ex) {
 			log.error("", ex);
 		}
-		return 0;
+		return -1;
 	}
 
 }

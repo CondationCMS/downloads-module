@@ -55,23 +55,25 @@ public class DownloadHandler implements HttpHandler {
 		}
 		final String filename = parameters.get("download").getFirst();
 
-		var downloadPath = downloadResolver.resolve(filename);
+		var streamableOptional = downloadResolver.resolve(filename);
 
-		if (downloadPath.isEmpty()) {
+		if (streamableOptional.isEmpty()) {
 			response.setStatus(HttpStatus.NOT_FOUND_404);
 			callback.succeeded();
 			return true;
 		}
+		
+		var download = streamableOptional.get();
 
 		DownloadsModule.COUNTER_DB.count(Constants.Counters.DOWNLOADS, filename, LocalDate.now(), 1);
 		
 		try (
-				var inputStream = Files.newInputStream(downloadPath.get()); 
+				var inputStream = download.getInputStream(); 
 				var outputStream = Content.Sink.asOutputStream(response);) {
 			
 			response.getHeaders().add("Content-Type", "application/octet-stream");
-			response.getHeaders().add("Content-Disposition", "attachment; filename=" + filename);
-			response.getHeaders().add("Content-Length", Files.size(downloadPath.get()));
+			response.getHeaders().add("Content-Disposition", "attachment; filename=" + download.getFileName());
+			response.getHeaders().add("Content-Length", download.getSize());
 
 			inputStream.transferTo(outputStream);
 		}

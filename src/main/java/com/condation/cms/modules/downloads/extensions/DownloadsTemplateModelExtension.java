@@ -23,7 +23,7 @@ package com.condation.cms.modules.downloads.extensions;
  */
 
 
-import com.condation.cms.api.extensions.TemplateModelExtendingExtentionPoint;
+import com.condation.cms.api.extensions.TemplateModelExtendingExtensionPoint;
 import com.condation.cms.api.template.TemplateEngine;
 import com.condation.cms.modules.downloads.Constants;
 import com.condation.cms.modules.downloads.DownloadsModule;
@@ -33,8 +33,8 @@ import com.condation.modules.api.annotation.Extension;
  *
  * @author t.marx
  */
-@Extension(TemplateModelExtendingExtentionPoint.class)
-public class DownloadsTemplateModelExtension extends TemplateModelExtendingExtentionPoint {
+@Extension(TemplateModelExtendingExtensionPoint.class)
+public class DownloadsTemplateModelExtension extends TemplateModelExtendingExtensionPoint {
 
 	@Override
 	public void extendModel(TemplateEngine.Model model) {

@@ -33,7 +33,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author t.marx
  */
-public class DownloadsShortcodesExtensionTest {
+public class DownloadsTagsExtensionTest {
 	
 
 	@Test
@@ -44,7 +44,7 @@ public class DownloadsShortcodesExtensionTest {
 		parameter.put("id", "THEID");
 		parameter.put("text", "THETEXT");
 		
-		Assertions.assertThat(extension.shortCodes().get("downloads_link").apply(parameter))
+		Assertions.assertThat(extension.tags().get("downloads_link").apply(parameter))
 				.isEqualTo("<a href=\"/downloads?download=THEID\">THETEXT</a>");
 	}
 	
@@ -54,7 +54,7 @@ public class DownloadsShortcodesExtensionTest {
 		
 		Parameter parameter = new Parameter();
 		
-		Assertions.assertThat(extension.shortCodes().get("downloads_link").apply(parameter))
+		Assertions.assertThat(extension.tags().get("downloads_link").apply(parameter))
 				.isEqualTo("<a href=\"/downloads?download=\">Download</a>");
 	}
 	
@@ -65,7 +65,7 @@ public class DownloadsShortcodesExtensionTest {
 		Parameter parameter = new Parameter();
 		parameter.put("id", "THEID");
 		
-		Assertions.assertThat(extension.shortCodes().get("downloads_link").apply(parameter))
+		Assertions.assertThat(extension.tags().get("downloads_link").apply(parameter))
 				.isEqualTo("<a href=\"/downloads?download=THEID\">Download</a>");
 	}
 	
@@ -76,7 +76,7 @@ public class DownloadsShortcodesExtensionTest {
 		Parameter parameter = new Parameter();
 		parameter.put("text", "download text");
 		
-		Assertions.assertThat(extension.shortCodes().get("downloads_link").apply(parameter))
+		Assertions.assertThat(extension.tags().get("downloads_link").apply(parameter))
 				.isEqualTo("<a href=\"/downloads?download=\">download text</a>");
 	}
 }

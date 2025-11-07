@@ -25,8 +25,8 @@ package com.condation.cms.modules.downloads;
 import com.condation.cms.api.configuration.configs.SiteConfiguration;
 import com.condation.cms.api.feature.features.ConfigurationFeature;
 import com.condation.cms.api.feature.features.DBFeature;
-import com.condation.cms.api.module.CMSModuleContext;
-import com.condation.cms.api.module.CMSRequestContext;
+import com.condation.cms.api.module.SiteModuleContext;
+import com.condation.cms.api.module.SiteRequestContext;
 import com.condation.cms.modules.downloads.counter.CounterDB;
 import com.condation.cms.modules.downloads.counter.H2CounterDB;
 import com.condation.cms.modules.downloads.counter.MockCounterDB;
@@ -40,7 +40,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Extension(ModuleLifeCycleExtension.class)
-public class DownloadsModule extends ModuleLifeCycleExtension<CMSModuleContext, CMSRequestContext> {
+public class DownloadsModule extends ModuleLifeCycleExtension<SiteModuleContext, SiteRequestContext> {
 
 	public static DownloadResolver DOWNLOAD_RESOLVER;
 

@@ -28,6 +28,7 @@ import com.condation.cms.api.template.TemplateEngine;
 import com.condation.cms.modules.downloads.Constants;
 import com.condation.cms.modules.downloads.DownloadsModule;
 import com.condation.modules.api.annotation.Extension;
+import java.util.Map;
 
 /**
  *
@@ -37,9 +38,11 @@ import com.condation.modules.api.annotation.Extension;
 public class DownloadsTemplateModelExtension extends TemplateModelExtendingExtensionPoint {
 
 	@Override
-	public void extendModel(TemplateEngine.Model model) {
-		model.values.put("downloads", new Downloads());
+	public Map<String, Object> getModel() {
+		return Map.of("downloads", new Downloads());
 	}
+	
+	
 	
 	public static class Downloads {
 		

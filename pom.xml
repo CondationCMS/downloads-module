@@ -3,18 +3,18 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.condation.cms.modules</groupId>
 	<artifactId>downloads-module</artifactId>
-	<version>3.1.1</version>
+	<version>3.2.0</version>
 	<packaging>jar</packaging>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>21</maven.compiler.source>
-		<maven.compiler.target>21</maven.compiler.target>
+		<maven.compiler.source>25</maven.compiler.source>
+		<maven.compiler.target>25</maven.compiler.target>
         
 		<module.id>downloads-module</module.id>
 		<module.name>downloads module</module.name>
 		<module.priority>NORMAL</module.priority>
 		
-		<cms.version>7.8.0</cms.version>
+		<cms.version>8.0.0</cms.version>
 		<modules.version>1.2.0</modules.version>
 		
 	</properties>
@@ -147,6 +147,20 @@
 						</configuration>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.14.1</version>
+				<configuration>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+							<version>1.18.42</version>
+						</path>
+					</annotationProcessorPaths>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

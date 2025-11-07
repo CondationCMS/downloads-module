@@ -23,7 +23,7 @@ package com.condation.cms.modules.downloads.extensions;
  */
 
 
-import com.condation.cms.api.extensions.RegisterShortCodesExtensionPoint;
+import com.condation.cms.api.extensions.RegisterTagsExtensionPoint;
 import com.condation.cms.api.model.Parameter;
 import com.condation.cms.modules.downloads.Constants;
 import com.condation.cms.modules.downloads.DownloadsModule;
@@ -36,8 +36,8 @@ import java.util.function.Function;
  *
  * @author t.marx
  */
-@Extension(RegisterShortCodesExtensionPoint.class)
-public class DownloadsShortcodesExtension extends RegisterShortCodesExtensionPoint {
+@Extension(RegisterTagsExtensionPoint.class)
+public class DownloadsShortcodesExtension extends RegisterTagsExtensionPoint {
 
 	public static final String DOWNLOAD_LINK = "<a href=\"/downloads?download=DOWNLOAD_ID\">DOWNLOAD_TEXTCOUNTER_TEXT</a>";
 	
@@ -57,7 +57,7 @@ public class DownloadsShortcodesExtension extends RegisterShortCodesExtensionPoi
 	};
 	
 	@Override
-	public Map<String, Function<Parameter, String>> shortCodes() {
+	public Map<String, Function<Parameter, String>> tags() {
 		Map<String, Function<Parameter, String>> codes = new HashMap<>();
 		
 		codes.put("downloads_link", downloadLink);
